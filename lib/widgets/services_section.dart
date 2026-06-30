@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../theme/app_theme.dart';
 
 class ServicesSection extends StatelessWidget {
@@ -11,70 +12,50 @@ class ServicesSection extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: isMobile ? 24 : 60,
-        vertical: isMobile ? 40 : 60,
+        vertical: isMobile ? 60 : 80,
       ),
-      color: AppTheme.lightGrey,
+      color: AppTheme.offWhite,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
             'Our Services',
             style: AppTheme.heading2.copyWith(
-              fontSize: isMobile ? 32 : 40,
+              fontSize: isMobile ? 36 : 42,
             ),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 50),
+          const SizedBox(height: 12),
+          Text(
+            'Discover the essence of luxury hospitality',
+            style: AppTheme.bodyLarge.copyWith(
+              color: AppTheme.mediumGray,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 60),
           GridView.count(
-            crossAxisCount: isMobile ? 1 : 2,
-            crossAxisSpacing: 40,
-            mainAxisSpacing: 40,
+            crossAxisCount: isMobile ? 1 : 3,
+            crossAxisSpacing: 32,
+            mainAxisSpacing: 32,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
+            childAspectRatio: isMobile ? 1.1 : 1.0,
             children: [
               _ServiceCard(
                 icon: Icons.restaurant,
-                title: 'Fine Dining Restaurants',
-                description: 'Premium culinary experience with diverse cuisines',
-                services: [
-                  '• Kudla Restaurant',
-                  '• Gourmet Kitchen & Bar',
-                  '• Parika Coastal Village',
-                  '• Uptown Rooftop Bar & Grill',
-                ],
-              ),
-              _ServiceCard(
-                icon: Icons.room_service,
-                title: 'Room Service',
-                description: 'Delicious meals delivered to your room',
-                services: [
-                  '• Breakfast Service',
-                  '• Lunch & Dinner',
-                  '• Special Requests',
-                  '• 24/7 Availability',
-                ],
-              ),
-              _ServiceCard(
-                icon: Icons.celebration,
-                title: 'Banquet Halls',
-                description: 'Elegant venues for your special events',
-                services: [
-                  '• Golden Pearl Hall (300 capacity)',
-                  '• Aapthi Hall (150-200 capacity)',
-                  '• Professional Catering',
-                  '• Event Coordination',
-                ],
+                title: 'Fine Dining',
+                description: 'Experience coastal and multicuisine excellence',
               ),
               _ServiceCard(
                 icon: Icons.event_available,
-                title: 'Events & Catering',
-                description: 'Complete event management solutions',
-                services: [
-                  '• Weddings',
-                  '• Corporate Events',
-                  '• Conferences',
-                  '• Private Functions',
-                ],
+                title: 'Banquet Halls',
+                description: 'Premium venues for unforgettable events',
+              ),
+              _ServiceCard(
+                icon: Icons.nightlife,
+                title: 'Rooftop Venues',
+                description: 'Stunning city views and sophisticated ambiance',
               ),
             ],
           ),
@@ -88,13 +69,11 @@ class _ServiceCard extends StatefulWidget {
   final IconData icon;
   final String title;
   final String description;
-  final List<String> services;
 
   const _ServiceCard({
     required this.icon,
     required this.title,
     required this.description,
-    required this.services,
   });
 
   @override
@@ -111,61 +90,62 @@ class _ServiceCardState extends State<_ServiceCard> {
       onExit: (_) => setState(() => _isHovered = false),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
-        padding: const EdgeInsets.all(30),
+        padding: const EdgeInsets.all(32),
         decoration: BoxDecoration(
           color: AppTheme.white,
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(AppTheme.radiusLarge),
           boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(_isHovered ? 0.15 : 0.08),
-              blurRadius: _isHovered ? 16 : 8,
-              spreadRadius: _isHovered ? 2 : 0,
-              offset: Offset(0, _isHovered ? 8 : 4),
-            ),
+            if (!_isHovered) AppTheme.softShadow,
+            if (_isHovered) AppTheme.mediumShadow,
           ],
           border: Border.all(
-            color: _isHovered ? AppTheme.primaryBrown : Colors.transparent,
+            color: _isHovered
+                ? AppTheme.primaryGreen.withOpacity(0.3)
+                : Colors.transparent,
             width: 1,
           ),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: AppTheme.cream,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Icon(
-                widget.icon,
-                size: 32,
-                color: AppTheme.primaryBrown,
-              ),
-            ),
-            const SizedBox(height: 20),
-            Text(
-              widget.title,
-              style: AppTheme.heading4,
-            ),
-            const SizedBox(height: 12),
-            Text(
-              widget.description,
-              style: AppTheme.bodyMedium.copyWith(color: AppTheme.grey),
-            ),
-            const SizedBox(height: 20),
-            ...widget.services
-                .map(
-                  (service) => Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 6),
-                    child: Text(
-                      service,
-                      style: AppTheme.bodySmall,
-                    ),
+        child: Transform.translate(
+          offset: _isHovered ? const Offset(0, -8) : Offset.zero,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                width: 64,
+                height: 64,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      AppTheme.primaryGreen.withOpacity(0.1),
+                      AppTheme.primaryGreen.withOpacity(0.05),
+                    ],
                   ),
-                )
-                .toList(),
-          ],
+                  borderRadius: BorderRadius.circular(AppTheme.radiusLarge),
+                ),
+                child: Icon(
+                  widget.icon,
+                  size: 36,
+                  color: AppTheme.primaryGreen,
+                ),
+              ),
+              const SizedBox(height: 20),
+              Text(
+                widget.title,
+                style: AppTheme.heading5,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 12),
+              Text(
+                widget.description,
+                style: AppTheme.bodyMedium.copyWith(
+                  color: AppTheme.mediumGray,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
         ),
       ),
     );

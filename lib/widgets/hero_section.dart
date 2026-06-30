@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../theme/app_theme.dart';
 
 class HeroSection extends StatefulWidget {
@@ -18,7 +19,7 @@ class _HeroSectionState extends State<HeroSection>
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 1200),
+      duration: const Duration(milliseconds: 1500),
       vsync: this,
     );
 
@@ -27,7 +28,7 @@ class _HeroSectionState extends State<HeroSection>
     );
 
     _slideAnimation = Tween<Offset>(
-      begin: const Offset(0, 0.3),
+      begin: const Offset(0, 0.4),
       end: Offset.zero,
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
 
@@ -40,73 +41,88 @@ class _HeroSectionState extends State<HeroSection>
     final screenHeight = MediaQuery.of(context).size.height;
 
     return Container(
-      height: isMobile ? screenHeight * 0.6 : screenHeight * 0.7,
+      height: isMobile ? screenHeight * 0.65 : screenHeight * 0.75,
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            AppTheme.logoBg.withOpacity(0.95),
-            AppTheme.logoBg.withOpacity(0.85),
-          ],
-        ),
         image: const DecorationImage(
           image: AssetImage('assets/images/hero-bg.jpg'),
           fit: BoxFit.cover,
-          opacity: 0.15,
         ),
       ),
-      child: FadeTransition(
-        opacity: _fadeAnimation,
-        child: SlideTransition(
-          position: _slideAnimation,
-          child: Center(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 40),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'Welcome to Parika',
-                    style: AppTheme.heading1.copyWith(
-                      color: AppTheme.logoGreen,
-                      fontSize: isMobile ? 36 : 48,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 20),
-                  Text(
-                    'Experience Culinary Excellence & Premium Hospitality',
-                    style: AppTheme.heading3.copyWith(
-                      color: AppTheme.white,
-                      fontSize: isMobile ? 18 : 24,
-                      fontWeight: FontWeight.w400,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 40),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _HeroButton(
-                        label: 'Reserve Now',
-                        isPrimary: true,
-                        onTap: () {},
-                      ),
-                      const SizedBox(width: 20),
-                      _HeroButton(
-                        label: 'Order Food',
-                        isPrimary: false,
-                        onTap: () {},
-                      ),
-                    ],
-                  ),
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          // Dark overlay with gradient
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Colors.black.withOpacity(0.4),
+                  Colors.black.withOpacity(0.6),
+                  Colors.black.withOpacity(0.7),
                 ],
               ),
             ),
           ),
-        ),
+          // Content
+          FadeTransition(
+            opacity: _fadeAnimation,
+            child: SlideTransition(
+              position: _slideAnimation,
+              child: Center(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 60),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Welcome to Parika',
+                        style: AppTheme.heading1.copyWith(
+                          color: AppTheme.white,
+                          fontSize: isMobile ? 42 : 56,
+                          letterSpacing: 1,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        'Luxury Hospitality, Coastal Dining & Premium Venues',
+                        style: GoogleFonts.cormorantGaramond(
+                          color: AppTheme.champagneGold,
+                          fontSize: isMobile ? 18 : 26,
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: 0.5,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 32),
+                      // CTA Buttons
+                      Wrap(
+                        spacing: 20,
+                        runSpacing: 16,
+                        alignment: WrapAlignment.center,
+                        children: [
+                          _HeroButton(
+                            label: 'Explore Our Brands',
+                            isPrimary: true,
+                            onTap: () {},
+                          ),
+                          _HeroButton(
+                            label: 'Make a Reservation',
+                            isPrimary: false,
+                            onTap: () {},
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -141,31 +157,39 @@ class _HeroButtonState extends State<_HeroButton> {
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
+      cursor: SystemMouseCursors.click,
       child: GestureDetector(
         onTap: widget.onTap,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 300),
-          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 16),
           decoration: BoxDecoration(
-            color: widget.isPrimary ? AppTheme.logoGreen : Colors.transparent,
-            border: widget.isPrimary ? null : Border.all(color: AppTheme.logoGreen),
-            borderRadius: BorderRadius.circular(50),
-            boxShadow: _isHovered
+            color: widget.isPrimary
+                ? AppTheme.primaryGreen
+                : Colors.transparent,
+            border: widget.isPrimary
+                ? null
+                : Border.all(color: AppTheme.deepGold, width: 2),
+            borderRadius: BorderRadius.circular(AppTheme.radiusLarge),
+            boxShadow: _isHovered && widget.isPrimary
                 ? [
                     BoxShadow(
-                      color: AppTheme.logoGreen.withOpacity(0.4),
-                      blurRadius: 12,
+                      color: AppTheme.primaryGreen.withOpacity(0.4),
+                      blurRadius: 20,
                       spreadRadius: 2,
                     ),
                   ]
                 : [],
           ),
-          child: Text(
-            widget.label,
-            style: AppTheme.buttonText.copyWith(
-              color: widget.isPrimary ? AppTheme.logoBg : AppTheme.logoGreen,
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
+          child: Transform.scale(
+            scale: _isHovered ? 1.05 : 1.0,
+            child: Text(
+              widget.label,
+              style: AppTheme.buttonText.copyWith(
+                color: widget.isPrimary
+                    ? AppTheme.white
+                    : AppTheme.deepGold,
+              ),
             ),
           ),
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../theme/app_theme.dart';
 
 class FooterWidget extends StatelessWidget {
@@ -13,7 +14,7 @@ class FooterWidget extends StatelessWidget {
         horizontal: isMobile ? 24 : 60,
         vertical: isMobile ? 40 : 60,
       ),
-      color: AppTheme.logoBg,
+      color: AppTheme.charcoal,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -26,36 +27,36 @@ class FooterWidget extends StatelessWidget {
                   title: 'PARIKA',
                   items: [
                     'About Us',
-                    'Our Mission',
-                    'Team',
+                    'Our Story',
                     'Careers',
+                    'Press',
                   ],
                 ),
                 _FooterColumn(
-                  title: 'Restaurants',
+                  title: 'Our Brands',
                   items: [
-                    'Kudla Restaurant',
-                    'Gourmet Kitchen & Bar',
-                    'Parika Coastal Village',
-                    'Uptown Rooftop Bar & Grill',
+                    'Parika Multicuisine',
+                    'Gourmet Kitchen',
+                    'Kudla Seafood',
+                    'Coastal Village',
                   ],
                 ),
                 _FooterColumn(
-                  title: 'Services',
+                  title: 'Venues',
                   items: [
-                    'Banquet Halls',
-                    'Catering',
-                    'Room Service',
+                    'Golden Pearl Hall',
+                    'Rapthi Boardroom',
+                    'Uptown Rooftop',
                     'Events',
                   ],
                 ),
                 _FooterColumn(
-                  title: 'Quick Links',
+                  title: 'Connect',
                   items: [
+                    'Contact Us',
                     'Reservations',
-                    'Menu',
-                    'Contact',
-                    'Blog',
+                    'Catering',
+                    'FAQs',
                   ],
                 ),
               ],
@@ -65,84 +66,67 @@ class FooterWidget extends StatelessWidget {
               children: [
                 _FooterColumn(
                   title: 'PARIKA',
-                  items: ['About Us', 'Our Mission', 'Team', 'Careers'],
+                  items: ['About Us', 'Our Story', 'Careers', 'Press'],
                 ),
                 const SizedBox(height: 32),
                 _FooterColumn(
-                  title: 'Restaurants',
+                  title: 'Our Brands',
                   items: [
-                    'Kudla Restaurant',
-                    'Gourmet Kitchen & Bar',
-                    'Parika Coastal Village',
-                    'Uptown Rooftop Bar & Grill',
+                    'Parika Multicuisine',
+                    'Gourmet Kitchen',
+                    'Kudla Seafood',
+                    'Coastal Village',
                   ],
                 ),
                 const SizedBox(height: 32),
                 _FooterColumn(
-                  title: 'Services',
+                  title: 'Venues',
                   items: [
-                    'Banquet Halls',
-                    'Catering',
-                    'Room Service',
+                    'Golden Pearl Hall',
+                    'Rapthi Boardroom',
+                    'Uptown Rooftop',
                     'Events',
                   ],
                 ),
               ],
             ),
           const SizedBox(height: 40),
-          Divider(
-            color: AppTheme.white.withOpacity(0.2),
-            thickness: 1,
+          Container(
+            height: 1,
+            color: AppTheme.darkGray.withOpacity(0.2),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 32),
           // Social Links
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          Wrap(
+            spacing: 24,
             children: [
               _SocialIcon(Icons.facebook, 'Facebook'),
-              const SizedBox(width: 24),
               _SocialIcon(Icons.camera_alt, 'Instagram'),
-              const SizedBox(width: 24),
               _SocialIcon(Icons.language, 'Website'),
-              const SizedBox(width: 24),
-              _SocialIcon(Icons.business, 'LinkedIn'),
+              _SocialIcon(Icons.mail, 'Email'),
             ],
           ),
           const SizedBox(height: 32),
-          // Copyright
-          Text(
-            '© 2024 Parika Hospitality Services. All rights reserved.',
-            style: AppTheme.bodySmall.copyWith(
-              color: AppTheme.white,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 12),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          // Copyright & Links
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                'Privacy Policy',
+                '© 2024 Parika Hospitality Services. All rights reserved.',
                 style: AppTheme.bodySmall.copyWith(
-                  color: AppTheme.logoGreen,
-                  decoration: TextDecoration.underline,
+                  color: AppTheme.mediumGray,
                 ),
+                textAlign: TextAlign.center,
               ),
-              const SizedBox(width: 24),
-              Text(
-                'Terms of Service',
-                style: AppTheme.bodySmall.copyWith(
-                  color: AppTheme.logoGreen,
-                  decoration: TextDecoration.underline,
-                ),
-              ),
-              const SizedBox(width: 24),
-              Text(
-                'Contact Us',
-                style: AppTheme.bodySmall.copyWith(
-                  color: AppTheme.logoGreen,
-                  decoration: TextDecoration.underline,
-                ),
+              const SizedBox(height: 16),
+              Wrap(
+                spacing: 24,
+                alignment: WrapAlignment.center,
+                children: [
+                  _FooterLink('Privacy Policy'),
+                  _FooterLink('Terms of Service'),
+                  _FooterLink('Cookie Policy'),
+                ],
               ),
             ],
           ),
@@ -167,9 +151,11 @@ class _FooterColumn extends StatelessWidget {
       children: [
         Text(
           title,
-          style: AppTheme.heading4.copyWith(
-            color: AppTheme.logoGreen,
-            fontSize: 16,
+          style: GoogleFonts.poppins(
+            color: AppTheme.deepGold,
+            fontSize: 13,
+            fontWeight: FontWeight.w700,
+            letterSpacing: 1,
           ),
         ),
         const SizedBox(height: 16),
@@ -180,7 +166,7 @@ class _FooterColumn extends StatelessWidget {
                 child: Text(
                   item,
                   style: AppTheme.bodySmall.copyWith(
-                    color: AppTheme.white,
+                    color: AppTheme.white.withOpacity(0.8),
                   ),
                   textAlign: isMobile ? TextAlign.center : TextAlign.start,
                 ),
@@ -215,18 +201,48 @@ class _SocialIconState extends State<_SocialIcon> {
         duration: const Duration(milliseconds: 300),
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: _isHovered ? AppTheme.logoGreen : Colors.transparent,
-          borderRadius: BorderRadius.circular(50),
+          color: _isHovered ? AppTheme.primaryGreen : Colors.transparent,
           border: Border.all(
-            color: AppTheme.logoGreen,
-            width: 1,
+            color: AppTheme.deepGold,
+            width: 1.5,
           ),
+          borderRadius: BorderRadius.circular(AppTheme.radiusMedium),
         ),
         child: Icon(
-          widget.icon,
-          size: 20,
-          color: _isHovered ? AppTheme.logoBg : AppTheme.logoGreen,
+          icon,
+          size: 18,
+          color: _isHovered ? AppTheme.white : AppTheme.deepGold,
         ),
+      ),
+    );
+  }
+}
+
+class _FooterLink extends StatefulWidget {
+  final String label;
+
+  const _FooterLink(this.label);
+
+  @override
+  State<_FooterLink> createState() => _FooterLinkState();
+}
+
+class _FooterLinkState extends State<_FooterLink> {
+  bool _isHovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      cursor: SystemMouseCursors.click,
+      child: AnimatedDefaultTextStyle(
+        duration: const Duration(milliseconds: 200),
+        style: AppTheme.bodySmall.copyWith(
+          color: _isHovered ? AppTheme.deepGold : AppTheme.mediumGray,
+          decoration: _isHovered ? TextDecoration.underline : null,
+        ),
+        child: Text(widget.label),
       ),
     );
   }
