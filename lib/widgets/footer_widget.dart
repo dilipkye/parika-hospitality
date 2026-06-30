@@ -209,7 +209,7 @@ class _SocialIconState extends State<_SocialIcon> {
           borderRadius: BorderRadius.circular(AppTheme.radiusMedium),
         ),
         child: Icon(
-          icon,
+          widget.icon,
           size: 18,
           color: _isHovered ? AppTheme.white : AppTheme.deepGold,
         ),
