@@ -27,6 +27,13 @@ class AppTheme {
   static const Color mediumGray = Color(0xFF757575);
   static const Color lightGray = Color(0xFFF0EDE9);
 
+  // Aliases for backward compatibility
+  static const Color grey = mediumGray;
+  static const Color lightGrey = lightGray;
+  static const Color primaryBrown = richBrown;
+  static const Color gold = deepGold;
+  static const Color cream = lightCream;
+
   // Text Styles with Elegant Fonts
   static TextStyle heading1 = GoogleFonts.playfairDisplay(
     fontSize: 56,
