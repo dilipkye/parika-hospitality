@@ -1,0 +1,28 @@
+# Flutter
+build/
+dart_tool/
+.dart_tool/
+.flutter-plugins
+.packages
+*.iml
+.idea/
+.metadata
+
+# Visual Studio Code
+.vscode/
+*.swp
+*.swo
+
+# macOS
+.DS_Store
+
+# Environment
+.env
+.env.*
+
+# IDE
+*.sublime-project
+*.sublime-workspace
+
+# OS
+Thumbs.db
