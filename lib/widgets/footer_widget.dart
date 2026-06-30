@@ -13,7 +13,7 @@ class FooterWidget extends StatelessWidget {
         horizontal: isMobile ? 24 : 60,
         vertical: isMobile ? 40 : 60,
       ),
-      color: AppTheme.darkBrown,
+      color: AppTheme.logoBg,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -113,7 +113,7 @@ class FooterWidget extends StatelessWidget {
           Text(
             '© 2024 Parika Hospitality Services. All rights reserved.',
             style: AppTheme.bodySmall.copyWith(
-              color: AppTheme.cream,
+              color: AppTheme.white,
             ),
             textAlign: TextAlign.center,
           ),
@@ -124,7 +124,7 @@ class FooterWidget extends StatelessWidget {
               Text(
                 'Privacy Policy',
                 style: AppTheme.bodySmall.copyWith(
-                  color: AppTheme.gold,
+                  color: AppTheme.logoGreen,
                   decoration: TextDecoration.underline,
                 ),
               ),
@@ -132,7 +132,7 @@ class FooterWidget extends StatelessWidget {
               Text(
                 'Terms of Service',
                 style: AppTheme.bodySmall.copyWith(
-                  color: AppTheme.gold,
+                  color: AppTheme.logoGreen,
                   decoration: TextDecoration.underline,
                 ),
               ),
@@ -140,7 +140,7 @@ class FooterWidget extends StatelessWidget {
               Text(
                 'Contact Us',
                 style: AppTheme.bodySmall.copyWith(
-                  color: AppTheme.gold,
+                  color: AppTheme.logoGreen,
                   decoration: TextDecoration.underline,
                 ),
               ),
@@ -168,7 +168,7 @@ class _FooterColumn extends StatelessWidget {
         Text(
           title,
           style: AppTheme.heading4.copyWith(
-            color: AppTheme.gold,
+            color: AppTheme.logoGreen,
             fontSize: 16,
           ),
         ),
@@ -180,7 +180,7 @@ class _FooterColumn extends StatelessWidget {
                 child: Text(
                   item,
                   style: AppTheme.bodySmall.copyWith(
-                    color: AppTheme.cream,
+                    color: AppTheme.white,
                   ),
                   textAlign: isMobile ? TextAlign.center : TextAlign.start,
                 ),
@@ -215,17 +215,17 @@ class _SocialIconState extends State<_SocialIcon> {
         duration: const Duration(milliseconds: 300),
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: _isHovered ? AppTheme.gold : Colors.transparent,
+          color: _isHovered ? AppTheme.logoGreen : Colors.transparent,
           borderRadius: BorderRadius.circular(50),
           border: Border.all(
-            color: AppTheme.gold,
+            color: AppTheme.logoGreen,
             width: 1,
           ),
         ),
         child: Icon(
           widget.icon,
           size: 20,
-          color: _isHovered ? AppTheme.darkBrown : AppTheme.gold,
+          color: _isHovered ? AppTheme.logoBg : AppTheme.logoGreen,
         ),
       ),
     );

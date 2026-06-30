@@ -46,14 +46,14 @@ class _HeroSectionState extends State<HeroSection>
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            AppTheme.darkBrown.withOpacity(0.9),
-            AppTheme.primaryBrown.withOpacity(0.8),
+            AppTheme.logoBg.withOpacity(0.95),
+            AppTheme.logoBg.withOpacity(0.85),
           ],
         ),
         image: const DecorationImage(
           image: AssetImage('assets/images/hero-bg.jpg'),
           fit: BoxFit.cover,
-          opacity: 0.3,
+          opacity: 0.15,
         ),
       ),
       child: FadeTransition(
@@ -70,7 +70,7 @@ class _HeroSectionState extends State<HeroSection>
                   Text(
                     'Welcome to Parika',
                     style: AppTheme.heading1.copyWith(
-                      color: AppTheme.gold,
+                      color: AppTheme.logoGreen,
                       fontSize: isMobile ? 36 : 48,
                     ),
                     textAlign: TextAlign.center,
@@ -79,7 +79,7 @@ class _HeroSectionState extends State<HeroSection>
                   Text(
                     'Experience Culinary Excellence & Premium Hospitality',
                     style: AppTheme.heading3.copyWith(
-                      color: AppTheme.cream,
+                      color: AppTheme.white,
                       fontSize: isMobile ? 18 : 24,
                       fontWeight: FontWeight.w400,
                     ),
@@ -147,13 +147,13 @@ class _HeroButtonState extends State<_HeroButton> {
           duration: const Duration(milliseconds: 300),
           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
           decoration: BoxDecoration(
-            color: widget.isPrimary ? AppTheme.gold : Colors.transparent,
-            border: widget.isPrimary ? null : Border.all(color: AppTheme.gold),
+            color: widget.isPrimary ? AppTheme.logoGreen : Colors.transparent,
+            border: widget.isPrimary ? null : Border.all(color: AppTheme.logoGreen),
             borderRadius: BorderRadius.circular(50),
             boxShadow: _isHovered
                 ? [
                     BoxShadow(
-                      color: AppTheme.gold.withOpacity(0.4),
+                      color: AppTheme.logoGreen.withOpacity(0.4),
                       blurRadius: 12,
                       spreadRadius: 2,
                     ),
@@ -163,7 +163,7 @@ class _HeroButtonState extends State<_HeroButton> {
           child: Text(
             widget.label,
             style: AppTheme.buttonText.copyWith(
-              color: widget.isPrimary ? AppTheme.darkBrown : AppTheme.gold,
+              color: widget.isPrimary ? AppTheme.logoBg : AppTheme.logoGreen,
               fontSize: 16,
               fontWeight: FontWeight.w600,
             ),

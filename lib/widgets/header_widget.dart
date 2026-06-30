@@ -11,13 +11,19 @@ class HeaderWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: isMobile ? 16 : 40,
-        vertical: isMobile ? 16 : 24,
+        vertical: isMobile ? 12 : 16,
       ),
       decoration: BoxDecoration(
-        color: AppTheme.darkBrown,
+        color: AppTheme.white,
+        border: Border(
+          bottom: BorderSide(
+            color: AppTheme.logoBg.withOpacity(0.2),
+            width: 2,
+          ),
+        ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withOpacity(0.05),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -27,22 +33,48 @@ class HeaderWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           // Logo & Company Name
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          Row(
             children: [
-              Text(
-                'PARIKA',
-                style: AppTheme.heading2.copyWith(
-                  color: AppTheme.gold,
-                  fontSize: isMobile ? 28 : 36,
+              // Logo placeholder
+              Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: AppTheme.logoBg,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Center(
+                  child: Text(
+                    'P',
+                    style: TextStyle(
+                      color: AppTheme.logoGreen,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                    ),
+                  ),
                 ),
               ),
-              Text(
-                'Hospitality Services',
-                style: AppTheme.bodyMedium.copyWith(
-                  color: AppTheme.cream,
-                  fontSize: isMobile ? 12 : 14,
-                ),
+              const SizedBox(width: 12),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'PARIKA',
+                    style: TextStyle(
+                      color: AppTheme.logoBg,
+                      fontSize: isMobile ? 20 : 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    'Hospitality',
+                    style: TextStyle(
+                      color: AppTheme.logoGreen,
+                      fontSize: isMobile ? 10 : 12,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -58,7 +90,7 @@ class HeaderWidget extends StatelessWidget {
             )
           else
             IconButton(
-              icon: const Icon(Icons.menu, color: AppTheme.white),
+              icon: Icon(Icons.menu, color: AppTheme.logoBg),
               onPressed: () {
                 // Show mobile menu
               },
@@ -77,7 +109,7 @@ class _NavButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: MouseRegion(
         cursor: SystemMouseCursors.click,
         child: GestureDetector(
@@ -86,9 +118,10 @@ class _NavButton extends StatelessWidget {
           },
           child: Text(
             label,
-            style: AppTheme.bodyLarge.copyWith(
-              color: AppTheme.white,
+            style: TextStyle(
+              color: AppTheme.logoBg,
               fontWeight: FontWeight.w600,
+              fontSize: 14,
             ),
           ),
         ),
