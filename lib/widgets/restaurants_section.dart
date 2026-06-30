@@ -85,7 +85,6 @@ class _RestaurantCardState extends State<_RestaurantCard> {
                 spreadRadius: _isHovered ? 2 : 0,
               ),
             ],
-            overflow: Overflow.hidden,
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(12),
@@ -184,7 +183,7 @@ class _RestaurantCardState extends State<_RestaurantCard> {
                             ),
                           ),
                         ),
-                        if (_isHovered) ...[  
+                        if (_isHovered) ...[
                           const SizedBox(height: 16),
                           Text(
                             widget.restaurant.description,
